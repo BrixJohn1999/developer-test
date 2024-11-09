@@ -1,25 +1,73 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import UserCard from "./components/UserCard";
+import "./components/UserCard.css";
 
-function App() {
+const App = () => {
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      name: "John Doe",
+      email: "johndoe@example.com",
+      age: 28,
+      info: "A passionate wildlife enthusiast and photographer, often found exploring nature.",
+      imageUrl: "https://cdn-icons-png.flaticon.com/512/5231/5231020.png",
+    },
+    {
+      id: 2,
+      name: "Jane Smith",
+      email: "janesmith@example.com",
+      age: 25,
+      info: "An avid reader and aspiring novelist, Jane loves spending her weekends at local cafes.",
+      imageUrl: "https://cdn-icons-png.flaticon.com/512/5231/5231019.png",
+    },
+    {
+      id: 3,
+      name: "Alex Martinez",
+      email: "alexmartinez@example.com",
+      age: 30,
+      info: "A fitness enthusiast, Alex enjoys hiking and participating in marathons around the country.",
+      imageUrl: "https://cdn-icons-png.flaticon.com/512/3001/3001764.png",
+    },
+    {
+      id: 4,
+      name: "Sarah Johnson",
+      email: "sarahjohnson@example.com",
+      age: 30,
+      info: "A fitness enthusiast, Alex enjoys hiking and participating in marathons around the country.",
+      imageUrl: "https://cdn-icons-png.flaticon.com/512/5526/5526465.png",
+    },
+    {
+      id: 5,
+      name: "Brix John",
+      email: "brixjohn@example.com",
+      age: 30,
+      info: "A fitness enthusiast, Alex enjoys hiking and participating in marathons around the country.",
+      imageUrl:
+        "https://cdn.loom.com/avatars/29713120_48236cb3524545888cc9f4bbf3ddb395_192.jpg",
+    },
+  ]);
+
+  // Function to remove a user card
+  const removeUser = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="users-container">
+      {users.map((user) => (
+        <UserCard
+          key={user.id}
+          name={user.name}
+          email={user.email}
+          age={user.age}
+          info={user.info}
+          imageUrl={user.imageUrl}
+          onClose={() => removeUser(user.id)}
+        />
+      ))}
     </div>
   );
-}
+};
 
 export default App;
